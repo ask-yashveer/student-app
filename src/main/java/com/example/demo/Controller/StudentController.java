@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Entity.Student;
+import com.example.demo.Exception.CustomException;
 import com.example.demo.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -33,11 +34,17 @@ public class StudentController {
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateStudent(@RequestBody Student student){
-        studentService.updateStudent(student);
+            studentService.updateStudent(student);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void insertStudent(@RequestBody Student student){
         studentService.insertStudent(student);
     }
+
+    @RequestMapping("/exception")
+    public void message() throws CustomException {
+        throw  new CustomException();
+    }
+
 }
